@@ -1,7 +1,6 @@
 #include "./utils.h"
 
 void SolveTask1(void *info, int nr_avioane) {
-    printf("\n\n");
     for (int i = 0; i < nr_avioane; i++) {
         int index_aux = 0;
         short aux1, aux2;

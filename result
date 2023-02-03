@@ -1,0 +1,153 @@
+
+Run cpplint
+
+./task1.c:16:  Line ends in whitespace.  Consider deleting these extra spaces.  [whitespace/end_of_line] [4]
+./task2.c:17:  Extra space before ( in function call  [whitespace/parens] [4]
+./task2.c:29:  Should have a space between // and comment  [whitespace/comments] [4]
+./task2.c:45:  Almost always, snprintf is better than strcpy  [runtime/printf] [4]
+./task2.c:46:  Almost always, snprintf is better than strcpy  [runtime/printf] [4]
+./task2.c:47:  Almost always, snprintf is better than strcpy  [runtime/printf] [4]
+./task2.c:48:  Almost always, snprintf is better than strcpy  [runtime/printf] [4]
+./task2.c:54:  Almost always, snprintf is better than strcpy  [runtime/printf] [4]
+./task2.c:55:  Almost always, snprintf is better than strcpy  [runtime/printf] [4]
+./task2.c:56:  Almost always, snprintf is better than strcpy  [runtime/printf] [4]
+./task2.c:57:  Almost always, snprintf is better than strcpy  [runtime/printf] [4]
+./task2.c:58:  Almost always, snprintf is better than strcpy  [runtime/printf] [4]
+./task2.c:88:  Line ends in whitespace.  Consider deleting these extra spaces.  [whitespace/end_of_line] [4]
+./task2.c:89:  { should almost always be at the end of the previous line  [whitespace/braces] [4]
+./task2.c:105:  Line ends in whitespace.  Consider deleting these extra spaces.  [whitespace/end_of_line] [4]
+./task2.c:106:  { should almost always be at the end of the previous line  [whitespace/braces] [4]
+./task2.c:124:  Line ends in whitespace.  Consider deleting these extra spaces.  [whitespace/end_of_line] [4]
+./task2.c:125:  { should almost always be at the end of the previous line  [whitespace/braces] [4]
+./task2.c:141:  Line ends in whitespace.  Consider deleting these extra spaces.  [whitespace/end_of_line] [4]
+./task2.c:142:  { should almost always be at the end of the previous line  [whitespace/braces] [4]
+./task2.c:168:  Redundant blank line at the start of a code block should be deleted.  [whitespace/blank_line] [2]
+./task3.c:30:  Do not use variable-length arrays.  Use an appropriately named ('k' followed by CamelCase) compile-time constant for the size.  [runtime/arrays] [1]
+./task3.c:43:  Line ends in whitespace.  Consider deleting these extra spaces.  [whitespace/end_of_line] [4]
+./task3.c:43:  Redundant blank line at the end of a code block should be deleted.  [whitespace/blank_line] [3]
+./task3.c:45:  Line ends in whitespace.  Consider deleting these extra spaces.  [whitespace/end_of_line] [4]
+./task3.c:48:  Lines should be <= 120 characters long  [whitespace/line_length] [2]
+./task3.c:48:  Missing space after ,  [whitespace/comma] [3]
+Done processing ./intern.c
+Done processing ./task1.c
+Done processing ./task2.c
+Done processing ./task3.c
+Done processing ./task4.c
+Done processing ./task5.c
+Done processing ./tema2.c
+Done processing ./utils.h
+Total errors found: 27
+
+Run clang-tidy
+
+11 warnings generated.
+22 warnings generated.
+28 warnings generated.
+59 warnings generated.
+66 warnings generated.
+72 warnings generated.
+78 warnings generated.
+84 warnings generated.
+/home/gebehash/Desktop/avioane/task1.c:6:15: error: variable 'aux1' is not initialized [cppcoreguidelines-init-variables,-warnings-as-errors]
+        short aux1, aux2;
+              ^
+                   = 0
+/home/gebehash/Desktop/avioane/task1.c:6:21: error: variable 'aux2' is not initialized [cppcoreguidelines-init-variables,-warnings-as-errors]
+        short aux1, aux2;
+                    ^
+                         = 0
+/home/gebehash/Desktop/avioane/task1.c:7:14: error: variable 'aux3' is not initialized [cppcoreguidelines-init-variables,-warnings-as-errors]
+        char aux3;
+             ^
+                  = 0
+/home/gebehash/Desktop/avioane/task1.c:8:29: error: 5 is a magic number; consider replacing it with a named constant [cppcoreguidelines-avoid-magic-numbers,-warnings-as-errors]
+        char *aux4 = malloc(5);
+                            ^
+/home/gebehash/Desktop/avioane/task1.c:9:13: error: variable 'aux5' is not initialized [cppcoreguidelines-init-variables,-warnings-as-errors]
+        int aux5;
+            ^
+                 = 0
+/home/gebehash/Desktop/avioane/task2.c:43:40: error: 7 is a magic number; consider replacing it with a named constant [cppcoreguidelines-avoid-magic-numbers,-warnings-as-errors]
+            plane1[i] = (char*) malloc(7 * sizeof(char));
+                                       ^
+/home/gebehash/Desktop/avioane/task2.c:51:41: error: 5 is a magic number; consider replacing it with a named constant [cppcoreguidelines-avoid-magic-numbers,-warnings-as-errors]
+        char** plane2 = (char**) malloc(5 * sizeof(char *));
+                                        ^
+/home/gebehash/Desktop/avioane/task2.c:52:29: error: 5 is a magic number; consider replacing it with a named constant [cppcoreguidelines-avoid-magic-numbers,-warnings-as-errors]
+        for (int i = 0; i < 5; i++)
+                            ^
+/home/gebehash/Desktop/avioane/task2.c:53:40: error: 9 is a magic number; consider replacing it with a named constant [cppcoreguidelines-avoid-magic-numbers,-warnings-as-errors]
+            plane2[i] = (char*) malloc(9 * sizeof(char));
+                                       ^
+/home/gebehash/Desktop/avioane/task2.c:67:16: error: 7 is a magic number; consider replacing it with a named constant [cppcoreguidelines-avoid-magic-numbers,-warnings-as-errors]
+        return 7;
+               ^
+/home/gebehash/Desktop/avioane/task2.c:70:16: error: 5 is a magic number; consider replacing it with a named constant [cppcoreguidelines-avoid-magic-numbers,-warnings-as-errors]
+        return 5;
+               ^
+/home/gebehash/Desktop/avioane/task2.c:72:16: error: 9 is a magic number; consider replacing it with a named constant [cppcoreguidelines-avoid-magic-numbers,-warnings-as-errors]
+        return 9;
+               ^
+/home/gebehash/Desktop/avioane/task2.c:77:16: error: 7 is a magic number; consider replacing it with a named constant [cppcoreguidelines-avoid-magic-numbers,-warnings-as-errors]
+        return 7;
+               ^
+/home/gebehash/Desktop/avioane/task2.c:82:16: error: 9 is a magic number; consider replacing it with a named constant [cppcoreguidelines-avoid-magic-numbers,-warnings-as-errors]
+        return 9;
+               ^
+/home/gebehash/Desktop/avioane/task2.c:84:16: error: 5 is a magic number; consider replacing it with a named constant [cppcoreguidelines-avoid-magic-numbers,-warnings-as-errors]
+        return 5;
+               ^
+/home/gebehash/Desktop/avioane/task2.c:160:16: error: 5 is a magic number; consider replacing it with a named constant [cppcoreguidelines-avoid-magic-numbers,-warnings-as-errors]
+    char coord[5] = {'N', 'E', 'S', 'W', 0};
+               ^
+/home/gebehash/Desktop/avioane/task2.c:169:16: error: variable 'avion' is not initialized [cppcoreguidelines-init-variables,-warnings-as-errors]
+        char **avion;
+               ^
+                     = NULL
+/home/gebehash/Desktop/avioane/task2.c:170:15: error: variable 'linie' is not initialized [cppcoreguidelines-init-variables,-warnings-as-errors]
+        short linie;
+              ^
+                    = 0
+/home/gebehash/Desktop/avioane/task2.c:171:15: error: variable 'coloana' is not initialized [cppcoreguidelines-init-variables,-warnings-as-errors]
+        short coloana;
+              ^
+                      = 0
+/home/gebehash/Desktop/avioane/task2.c:172:14: error: variable 'dir' is not initialized [cppcoreguidelines-init-variables,-warnings-as-errors]
+        char dir;
+             ^
+                 = 0
+/home/gebehash/Desktop/avioane/task2.c:173:14: error: variable 'tip' is not initialized [cppcoreguidelines-init-variables,-warnings-as-errors]
+        char tip;
+             ^
+                 = 0
+/home/gebehash/Desktop/avioane/task2.c:178:51: error: 5 is a magic number; consider replacing it with a named constant [cppcoreguidelines-avoid-magic-numbers,-warnings-as-errors]
+        memcpy(&tip, (info + i * SIZEOF_VECTOR) + 5, 1);
+                                                  ^
+/home/gebehash/Desktop/avioane/task2.c:183:13: error: variable 'i' is not initialized [cppcoreguidelines-init-variables,-warnings-as-errors]
+        int i, j, a, b;
+            ^
+              = 0
+/home/gebehash/Desktop/avioane/task2.c:183:16: error: variable 'j' is not initialized [cppcoreguidelines-init-variables,-warnings-as-errors]
+        int i, j, a, b;
+               ^
+                 = 0
+/home/gebehash/Desktop/avioane/task2.c:183:19: error: variable 'a' is not initialized [cppcoreguidelines-init-variables,-warnings-as-errors]
+        int i, j, a, b;
+                  ^
+                    = 0
+/home/gebehash/Desktop/avioane/task2.c:183:22: error: variable 'b' is not initialized [cppcoreguidelines-init-variables,-warnings-as-errors]
+        int i, j, a, b;
+                     ^
+                       = 0
+/home/gebehash/Desktop/avioane/task3.c:39:62: error: 5 is a magic number; consider replacing it with a named constant [cppcoreguidelines-avoid-magic-numbers,-warnings-as-errors]
+        memcpy(&avioane[i].tip, (info + i * SIZEOF_VECTOR) + 5, 1);
+                                                             ^
+/home/gebehash/Desktop/avioane/task3.c:40:61: error: 6 is a magic number; consider replacing it with a named constant [cppcoreguidelines-avoid-magic-numbers,-warnings-as-errors]
+        memcpy(avioane[i].cod, (info + i * SIZEOF_VECTOR) + 6, 3);
+                                                            ^
+/home/gebehash/Desktop/avioane/task3.c:41:64: error: 9 is a magic number; consider replacing it with a named constant [cppcoreguidelines-avoid-magic-numbers,-warnings-as-errors]
+        memcpy(&avioane[i].speed, (info + i * SIZEOF_VECTOR) + 9, 4);
+                                                               ^
+Suppressed 55 warnings (48 in non-user code, 7 with check filters).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+29 warnings treated as errors

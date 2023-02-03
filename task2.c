@@ -36,125 +36,156 @@ char **rotateMatrix(char **m, int *r, int *c) {
     return rm;
 }
 
-void buildPlanes(char** plane1, char** plane2) {
-    strcpy(plane1[0], "...*...");
-    strcpy(plane1[1], ".*****.");
-    strcpy(plane1[2], "...*...");
-    strcpy(plane1[3], "..***..");
+char **buildPlane(char type) {
+    if (type == '1') {
+        char** plane1 = (char**) malloc(4 * sizeof(char *));
+        for (int i = 0; i < 4; i++)
+            plane1[i] = (char*) malloc(7 * sizeof(char));
 
-    strcpy(plane2[0], "....*....");
-    strcpy(plane2[1], "...***...");
-    strcpy(plane2[2], ".*******.");
-    strcpy(plane2[3], "....*....");
-    strcpy(plane2[4], "..*****..");
+        strcpy(plane1[0], "...*...");
+        strcpy(plane1[1], ".*****.");
+        strcpy(plane1[2], "...*...");
+        strcpy(plane1[3], "..***..");
+        return plane1;
+    } else {
+        char** plane2 = (char**) malloc(5 * sizeof(char *));
+        for (int i = 0; i < 5; i++)
+            plane2[i] = (char*) malloc(9 * sizeof(char));
+        strcpy(plane2[0], "....*....");
+        strcpy(plane2[1], "...***...");
+        strcpy(plane2[2], ".*******.");
+        strcpy(plane2[3], "....*....");
+        strcpy(plane2[4], "..*****..");
+        return plane2;
+    }
 }
 
-int getRowByType(char type) {
-    if (type == '1')
+int getRowByType(char type, char dir) {
+    if (type == '1' && (dir == 'N' || dir == 'S'))
         return 4;
-    return 5;
-}
-
-int getColumnByType(char type) {
-    if (type == '1')
+    if (type == '1' && (dir == 'E' || dir == 'W'))
         return 7;
-    return 9;
+
+    if (type == '2' && (dir == 'N' || dir == 'S'))
+        return 5;
+    if (type == '2' && (dir == 'E' || dir == 'W'))
+        return 9;
 }
 
-int getStartCol(int coloana, char type) {
-    if (type == '1')
-        return coloana - 3;
-    return coloana - 4;
+int getColumnByType(char type, char dir) {
+    if (type == '1' && (dir == 'N' || dir == 'S'))
+        return 7;
+    if (type == '1' && (dir == 'E' || dir == 'W'))
+        return 4;
+
+    if (type == '2' && (dir == 'N' || dir == 'S'))
+        return 9;
+    if (type == '2' && (dir == 'E' || dir == 'W'))
+        return 5;
+}
+
+int getStartCol(int coloana, char type, char dir) {
+    if (type == '1') 
+    {
+        switch (dir) {
+            case 'N':
+            return coloana - 3;
+
+            case 'E':
+            return coloana - 3;
+
+            case 'W':
+            return coloana;
+
+            case 'S':
+            return coloana - 3;
+        }
+    }
+
+    if (type == '2') 
+    {
+        switch (dir) {
+            case 'N':
+            return coloana - 4;
+
+            case 'E':
+            return coloana - 4;
+
+            case 'W':
+            return coloana;
+
+            case 'S':
+            return coloana - 4;
+        }
+    }
+}
+
+int getStartLin(int linie, char type, char dir) {
+    if (type == '1') 
+    {
+        switch (dir) {
+            case 'N':
+            return linie;
+
+            case 'E':
+            return linie - 3;
+
+            case 'W':
+            return linie - 3;
+
+            case 'S':
+            return linie - 3;
+        }
+    }
+
+    if (type == '2') 
+    {
+        switch (dir) {
+            case 'N':
+            return linie;
+
+            case 'E':
+            return linie - 4;
+
+            case 'W':
+            return linie - 4;
+
+            case 'S':
+            return linie - 4;
+        }
+    }
+}
+
+char **rotateMatrixByDir(char **avion, int *rowLenght, int *colLenght, char dir) {
+    char coord[5] = {'N', 'E', 'S', 'W', 0};
+    for (int i = 0; coord[i] != dir; i++)
+        avion = rotateMatrix(avion, rowLenght, colLenght);
+    return avion;
 }
 
 void SolveTask2(void *info, int nr_avioane, int N, char **mat) {
-    char** plane1 = (char**) malloc(4 * sizeof(char *));
-    for (int i = 0; i < 4; i++)
-        plane1[i] = (char*) malloc(7 * sizeof(char));
-
-    char** plane2 = (char**) malloc(5 * sizeof(char *));
-    for (int i = 0; i < 5; i++)
-        plane2[i] = (char*) malloc(9 * sizeof(char));
-    
-    buildPlanes(plane1, plane2);
-
-//     int r = 4, c = 7;
-//     char **rm = rotateMatrix(plane1, &r, &c);
-        int r = getRowByType(2);
-        int c = getColumnByType(2);
-printMatrix(plane2, r, c);
-   printf("\n");
-//     rm = rotateMatrix(rm, &r, &c);
-//     printMatrix(rm, r, c);
-//     printf("\n");
-//     rm = rotateMatrix(rm, &r, &c);
-//     printMatrix(rm, r, c);
-//     printf("\n");
-//     rm = rotateMatrix(rm, &r, &c);
-//     printMatrix(rm, r, c);
-//     printf("\n");
     for (int i = 0; i < nr_avioane; i++) {
+
         char **avion;
         short linie;
         short coloana;
         char dir;
         char tip;
 
-
         memcpy(&linie, (info + i * SIZEOF_VECTOR), sizeof(linie));
         memcpy(&coloana, (info + i * SIZEOF_VECTOR) + 2, sizeof(coloana));
         memcpy(&dir, (info + i * SIZEOF_VECTOR) + 4, 1);
         memcpy(&tip, (info + i * SIZEOF_VECTOR) + 5, 1);
-
-        switch (tip)
-        {
-            case '1':
-                avion = plane1;
-                break;
-
-            case '2':
-                avion = plane2;
-                break;
-        }
-
-
-        int rowLenght = getRowByType(tip);
-        int colLenght = getColumnByType(tip);
-
-        switch (dir)
-        {
-            case 'N':
-                
-                break;
-            
-            case 'S':
-                for (int i = 0; i < 2; i++)
-                    avion = rotateMatrix(avion, &rowLenght, &colLenght);
-                break;
-
-            case 'E':
-                avion = rotateMatrix(avion, &rowLenght, &colLenght);
-                break;
-
-            case 'W':
-                for (int i = 0; i < 3; i++)
-                    avion = rotateMatrix(avion, &rowLenght, &colLenght);
-                break;
-        }
-        int a = 0;
-        for (int i = linie; a < getRowByType(tip); i++, a++) { // se schimba row si column in functie de directie !! 
-            int b = 0;
-            for (int j = getStartCol(coloana, tip); b < getColumnByType(tip); j++, b++) {
-                printf("avion[%d][%d]: %c\n", a, b, avion[a][b]);
-                if (avion[a][b] == '*') {
-                   printf("mat[%d][%d] = avion[%d][%d]\n", i, j, a, b);
+        avion = buildPlane(tip);
+        int rowLenght = getRowByType(tip, 'N');
+        int colLenght = getColumnByType(tip, 'N');
+        avion = rotateMatrixByDir(avion, &rowLenght, &colLenght, dir);
+        int i, j, a, b;
+        for (i = getStartLin(linie, tip, dir), a = 0; a < rowLenght; i++, a++)
+            for (j = getStartCol(coloana, tip, dir), b = 0; b < colLenght; j++, b++)
+                if (avion[a][b] == '*')
                     mat[i][j] = avion[a][b];
-                }
-                    
-            }
-        }
-        printMatrix(mat, N, N);
-        printf("\n");
+        free_mat(avion, getRowByType(tip, dir));
     }
     printMatrix(mat, N, N);
 }

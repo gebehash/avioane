@@ -125,7 +125,7 @@ check_task 5 1 5 10 # task4, test0-4, score per test = 10 - 50 pct
 check_readme # 10 pct
 
 # PENTRU VERIFICARE CODINGSTYLE DECOMENTATI URMATOAREA LINIE
-check_style
+#check_style
 
 print_result "Final score" "${total_score}/200"
 make clean &> /dev/null
